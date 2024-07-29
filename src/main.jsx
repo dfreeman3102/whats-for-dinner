@@ -6,6 +6,7 @@ import ErrorPage from './pages/ErrorPage.jsx'
 import HomePage from './pages/HomePage.jsx'
 import CookPage from './pages/CookPage.jsx'
 import RestaurantPage from './pages/RestaurantPage.jsx'
+import SettingsPage from './pages/SettingsPage.jsx'
 
 import './index.css'
 
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: '/restaurant',
         element: <RestaurantPage />,
+      },
+      {
+        path: '/settings',
+        element: <SettingsPage />,
       }
     ]
   }
