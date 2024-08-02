@@ -1,5 +1,5 @@
 import { useState } from "react"
-import './Spinner.css'
+import './spinner.css'
 
 export default function Spinner() {
     const [rotation, setRotation] = useState(0);
