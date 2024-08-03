@@ -7,6 +7,7 @@ import HomePage from './pages/HomePage.jsx'
 import CookPage from './pages/CookPage.jsx'
 import RestaurantPage from './pages/RestaurantPage.jsx'
 import SettingsPage from './pages/SettingsPage.jsx'
+import LoginPage from './pages/LoginPage.jsx'
 
 import './index.css'
 
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: '/settings',
         element: <SettingsPage />,
+      },
+      {
+        path: '/login',
+        element: <LoginPage />,
       }
     ]
   }

@@ -8,6 +8,9 @@ export default function Nav() {
       <button>
         <Link to="/settings">Settings</Link>
       </button>
+      <button>
+        <Link to="/login">Login</Link>
+      </button>
     </nav>
   );
 }
