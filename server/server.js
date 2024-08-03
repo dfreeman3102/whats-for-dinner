@@ -29,10 +29,17 @@ const startApolloServer = async () => {
 
     // Handle React routing, return all requests to the React app
     app.get('*', (req, res) => {
-      res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
-    });
-  }
-
+        const filePath = path.join(__dirname, '../client/dist', 'index.html');
+        console.log(`Serving file: ${filePath}`);
+        res.sendFile(filePath, (err) => {
+          if (err) {
+            console.error('Error serving file:', err);
+            res.status(500).send(err);
+          }
+        });
+      });
+    }
+      
   // Start the database and then the server
   db.once('open', () => {
     app.listen(PORT, () => {
