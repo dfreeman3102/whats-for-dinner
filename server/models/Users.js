@@ -1,29 +1,46 @@
-const {Schema, model} = require('mongoose');
+const { Schema, model } = require("mongoose");
+const bcrypt = require("bcrypt");
 
 const userSchema = new Schema({
-    username: {
-        type: String,
-        required: true,
-        unique: true,
+  fullName: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    match: [/.+@.+\..+/, "Please enter a valid e-mail address"],
+  },
+  password: {
+    type: String,
+    required: true,
+    minlength: 8,
+  },
+  savedMeals: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Meal",
     },
-    email: {
-        type: String,
-        required: true,
-        unique: true,
-    },
-    password: {
-        type: String,
-        required: true,
-        minlength: 5,
-    },
-    savedMeals: [
-        {
-        type: Schema.Types.ObjectId,
-        ref: 'Meal',
-        },
-    ],
-    });
+  ],
+});
 
-    const User = model('User', userSchema);
+// Middleware to hash the password before saving the user
+userSchema.pre("save", async function (next) {
+  // Check if the password is new or has been modified
+  if (this.isNew || this.isModified("password")) {
+    const saltRounds = 10; // Number of salt rounds for hashing
+    this.password = await bcrypt.hash(this.password, saltRounds); // Hash the password
+  }
+  next();
+});
 
-    module.exports = User;
+// Method to compare a given password with the hashed password
+userSchema.methods.isCorrectPassword = async function (password) {
+  return bcrypt.compare(password, this.password); // Compare passwords and return boolean
+};
+
+const User = model("User", userSchema);
+
+module.exports = User;
