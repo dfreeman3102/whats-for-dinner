@@ -1,35 +1,24 @@
-import { gql } from "@apollo/client";
+import {gql} from '@apollo/client';
 
-export const QUERY_ME = gql`
-  query me {
-    me {
-      _id
-      fullName
-      email
-      meals {
-        _id
-        mealText
-      }
+const GET_MEALS = gql`
+    query getMeals {
+        meals {
+            _id
+            mealName
+        }
     }
-  }
 `;
 
-export const QUERY_MEALS = gql`
-    query meals {
-        meals {
-        _id
-        mealText
+const GET_ME = gql`
+    query me {
+        me {
+            _id
+            fullName
+            email
+            savedMeals {
+                _id
+                mealName
+            }
         }
     }
-    `;
-
-export const QUERY_MEAL = gql`
-    query meal($mealId: ID!) {
-        meal(mealId: $mealId) {
-        _id
-        mealText
-        }
-    }
-    `;
-
-
+`;

@@ -19,9 +19,10 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },
-        addUser: async (parent, args) => {
-            const user = await User.create(args);
+        addUser: async (parent, {email, password}) => {
+            const user = await User.create({ email, password });
             const token = signToken(user);
+
             return { token, user };
         },
         saveMeal: async (parent, { mealName }, context) => {

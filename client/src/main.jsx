@@ -7,7 +7,7 @@ import HomePage from './pages/HomePage.jsx'
 import CookPage from './pages/CookPage.jsx'
 import RestaurantPage from './pages/RestaurantPage.jsx'
 import SettingsPage from './pages/SettingsPage.jsx'
-import LoginPage from './pages/LoginPage.jsx'
+import Login from './pages/LoginPage.jsx'
 
 import './index.css'
 
@@ -35,7 +35,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/login',
-        element: <LoginPage />,
+        element: <Login />,
       }
     ]
   }

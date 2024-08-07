@@ -12,6 +12,24 @@ export const ADD_USER = gql`
     }
 `;
 
+export const ADD_MEAL = gql`
+    mutation addMeal($mealName: String!) {
+        addMeal(mealName: $mealName) {
+            _id
+            mealName
+        }
+    }
+`;
+
+export const REMOVE_MEAL = gql`
+    mutation removeMeal($mealName: String!) {
+        removeMeal(mealName: $mealName) {
+            _id
+            mealName
+        }
+    }
+`;
+
 export const LOGIN_USER = gql`
     mutation login($email: String!, $password: String!) {
         login(email: $email, password: $password) {
@@ -20,24 +38,6 @@ export const LOGIN_USER = gql`
                 _id
                 fullName
             }
-        }
-    }
-`;
-
-export const ADD_MEAL = gql`
-    mutation addMeal($mealText: String!) {
-        addMeal(mealText: $mealText) {
-            _id
-            mealText
-        }
-    }
-`;
-
-export const REMOVE_MEAL = gql`
-    mutation removeMeal($mealId: ID!) {
-        removeMeal(mealId: $mealId) {
-            _id
-            mealText
         }
     }
 `;
