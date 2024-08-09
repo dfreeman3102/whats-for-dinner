@@ -18,12 +18,8 @@ const userSchema = new Schema({
     required: true,
     minlength: 8,
   },
-  savedMeals: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Meal",
-    },
-  ],
+  savedMeals: [String] 
+
 });
 
 // Middleware to hash the password before saving the user

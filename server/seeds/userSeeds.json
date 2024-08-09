@@ -1,0 +1,8 @@
+[
+    {
+        "fullName": "John Doe",
+        "email": "asdf@gmail.com",
+        "password": "123456789",
+        "savedMeals": ["Mac and Cheese", "Spaghetti", "Pizza", "Tacos", "Burgers"]
+    }
+]
