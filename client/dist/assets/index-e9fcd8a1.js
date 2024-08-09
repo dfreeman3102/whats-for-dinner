@@ -132,20 +132,6 @@ this in the docs: http://dev.apollodata.com/core/fragments.html#unique-names`):a
             }
         }
     }
-`;dn`
-    mutation addMeal($mealName: String!) {
-        addMeal(mealName: $mealName) {
-            _id
-            mealName
-        }
-    }
-`;dn`
-    mutation removeMeal($mealName: String!) {
-        removeMeal(mealName: $mealName) {
-            _id
-            mealName
-        }
-    }
 `;const Mx=dn`
     mutation login($email: String!, $password: String!) {
         login(email: $email, password: $password) {
@@ -154,6 +140,24 @@ this in the docs: http://dev.apollodata.com/core/fragments.html#unique-names`):a
                 _id
                 fullName
             }
+        }
+    }
+`;dn`
+    mutation saveMeal($savedMeals: String!) {
+        saveMeal(savedMeals: $savedMeals) {
+            _id
+            fullName
+            email
+            savedMeals
+        }
+    }
+`;dn`
+    mutation removeMeal($savedMeals: String!) {
+        removeMeal(savedMeals: $savedMeals) {
+            _id
+            fullName
+            email
+            savedMeals
         }
     }
 `;function cc(e){this.message=e}cc.prototype=new Error,cc.prototype.name="InvalidCharacterError";var bp=typeof window<"u"&&window.atob&&window.atob.bind(window)||function(e){var t=String(e).replace(/=+$/,"");if(t.length%4==1)throw new cc("'atob' failed: The string to be decoded is not correctly encoded.");for(var n,r,i=0,o=0,a="";r=t.charAt(o++);~r&&(n=i%4?64*n+r:r,i++%4)?a+=String.fromCharCode(255&n>>(-2*i&6)):0)r="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".indexOf(r);return a};function Ax(e){var t=e.replace(/-/g,"+").replace(/_/g,"/");switch(t.length%4){case 0:break;case 2:t+="==";break;case 3:t+="=";break;default:throw"Illegal base64url string!"}try{return function(n){return decodeURIComponent(bp(n).replace(/(.)/g,function(r,i){var o=i.charCodeAt(0).toString(16).toUpperCase();return o.length<2&&(o="0"+o),"%"+o}))}(t)}catch{return bp(t)}}function ms(e){this.message=e}function jx(e,t){if(typeof e!="string")throw new ms("Invalid token specified");var n=(t=t||{}).header===!0?0:1;try{return JSON.parse(Ax(e.split(".")[n]))}catch(r){throw new ms("Invalid token specified: "+r.message)}}ms.prototype=new Error,ms.prototype.name="InvalidTokenError";class zx{getUser(){return jx(this.getToken())}loggedIn(){return!!this.getToken()}setToken(t){localStorage.setItem("id_token")}login(t){localStorage.setItem("id_token",t),window.location.assign("/")}logout(){localStorage.removeItem("id_token"),window.location.reload()}}const Ux=new zx,Vx=e=>{const[t,n]=R.useState({email:"",password:""}),[r,{error:i,data:o}]=Tx(Mx),a=l=>{const{name:u,value:c}=l.target;n({...t,[u]:c})},s=async l=>{l.preventDefault(),console.log(t);try{const{data:u}=await r({variables:{...t}});Ux.login(u.login.token)}catch(u){console.error(u)}n({email:"",password:""})};return B.jsx("div",{children:B.jsxs("form",{onSubmit:s,children:[B.jsx("input",{className:"form-input",placeholder:"Your email",name:"email",type:"email",value:t.email,onChange:a}),B.jsx("input",{className:"form-input",placeholder:"******",name:"password",type:"password",value:t.password,onChange:a}),B.jsx("button",{className:"btn btn-block btn-info",style:{cursor:"pointer"},type:"submit",children:"Submit"})]})})},Qx=FS([{path:"/",element:B.jsx(Nx,{}),errorElement:B.jsx(Rx,{}),children:[{index:!0,element:B.jsx(Ix,{})},{path:"/cook",element:B.jsx(Px,{})},{path:"/restaurant",element:B.jsx(Fx,{})},{path:"/settings",element:B.jsx(Lx,{})},{path:"/login",element:B.jsx(Vx,{})}]}]);Ql.createRoot(document.getElementById("root")).render(B.jsx(BS,{router:Qx}))});export default Bx();

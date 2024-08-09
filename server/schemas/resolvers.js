@@ -1,51 +1,60 @@
-const { User, Meal } = require("../models");
+const { User } = require("../models");
+const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
-    me: async () => {
-        return User.find({}).populate("savedMeals");
-    }
+    me: async (_, __, context) => {
+      const { user } = context;
+      if (!user) {
+        throw new AuthenticationError("You need to be logged in!");
+      }
+      return await User.findById(user._id);
     },
-    Mutation: {
-        login: async (parent, { email, password }) => {
-            const user = await User.findOne({ email });
-            if (!user) {
-                return { message: "No user with this email!" };
-            }
-            const correctPw = await user.isCorrectPassword(password);
-            if (!correctPw) {
-                return { message: "Incorrect password!" };
-            }
-            const token = signToken(user);
-            return { token, user };
-        },
-        addUser: async (parent, {email, password}) => {
-            const user = await User.create({ email, password });
-            const token = signToken(user);
+    users: async () => {
+      return User.find({});
+    },
+  },
+  Mutation: {
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
+      if (!user) {
+        throw new AuthenticationError("No user with this email!");
+      }
+      const correctPw = await user.isCorrectPassword(password);
+      if (!correctPw) {
+        throw new AuthenticationError("Incorrect password!");
+      }
+      const token = signToken(user);
+      return { token, user };
+    },
+    addUser: async (parent, { fullName, email, password }) => {
+      const user = await User.create({ fullName, email, password });
+      const token = signToken(user);
+      return { token, user };
+    },
+    saveMeal: async (_, { savedMeal }, context) => {
+      const { user } = context;
+      if (!user) {
+        throw new AuthenticationError("You need to be logged in!");
+      }
+      return await User.findByIdAndUpdate(
+        user._id,
+        { $addToSet: { savedMeals: savedMeal } },
+        { new: true }
+      );
+    },
+    removeMeal: async (_, { savedMeal }, context) => {
+      const { user } = context;
+      if (!user) {
+        throw new AuthenticationError("You need to be logged in!");
+      }
+      return await User.findByIdAndUpdate(
+        user._id,
+        { $pull: { savedMeals: savedMeal } },
+        { new: true }
+      );
+    },
+  },
+};
 
-            return { token, user };
-        },
-        saveMeal: async (parent, { mealName }, context) => {
-            if (context.user) {
-                const updatedUser = await User.findByIdAndUpdate(
-                    { _id: context.user._id },
-                    { $addToSet: { savedMeals: mealName } },
-                    { new: true }
-                ).populate("savedMeals");
-                return updatedUser;
-            }
-            throw new AuthenticationError("You need to be logged in!");
-        },
-        removeMeal: async (parent, { mealName }, context) => {
-            if (context.user) {
-                const updatedUser = await User.findByIdAndUpdate(
-                    { _id: context.user._id },
-                    { $pull: { savedMeals: mealName } },
-                    { new: true }
-                ).populate("savedMeals");
-                return updatedUser;
-            }
-            throw new AuthenticationError("You need to be logged in!");
-        }
-    }
-  }
+module.exports = resolvers;
