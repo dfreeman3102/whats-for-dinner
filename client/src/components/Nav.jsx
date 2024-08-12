@@ -8,6 +8,8 @@ export default function Nav() {
   }
 
   return (
+    <div>
+      <img className='main-logo' src='./images/whatsfordinner_logo.webp' alt='Whats-for-dinner-logo' />
     <nav>
       <button>
         <Link to="/">Home</Link>
@@ -16,9 +18,9 @@ export default function Nav() {
         <Link to="/settings">Settings</Link>
       </button>
       {Auth.loggedIn() ? (
-      <button onClick={logout}>Logout</button>
+        <button onClick={logout}>Logout</button>
       ) : (
-      <>
+        <>
         <button>
           <Link to="/login">Login</Link>
         </button>
@@ -27,7 +29,8 @@ export default function Nav() {
         </button>
       </>
       )  
-      }
+    }
     </nav>
+    </div>
   );
 }

@@ -16,6 +16,13 @@ body, html {
     padding: 20px;
 }
 
+.main-logo {
+    width: 250px;
+    height: 250px;
+    border-radius: 25px;
+    margin-bottom: 20px;
+}
+
 h1 {
     font-size: 2.5rem;
     margin-bottom: 20px;

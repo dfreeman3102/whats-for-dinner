@@ -3,7 +3,6 @@ import '../styles/HomePage.css';
 export default function HomePage() {
     return (
         <div>
-        <h1>Whats For Dinner?</h1>
         <p>
             Let us help you decide what to eat tonight.
         </p>
