@@ -32,26 +32,27 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    saveMeal: async (_, { savedMeal }, context) => {
-      const { user } = context;
-      if (!user) {
-        throw new AuthenticationError("You need to be logged in!");
-      }
-      return await User.findByIdAndUpdate(
-        user._id,
-        { $addToSet: { savedMeals: savedMeal } },
-        { new: true }
+    saveMeal: async (parent, { userId, savedMeal }) => {
+      return User.findOneAndUpdate(
+        { _id: userId },
+        {
+          $addToSet: { savedMeals: savedMeal },
+        },
+        {
+          new: true,
+          runValidators: true,
+        }
       );
     },
-    removeMeal: async (_, { savedMeal }, context) => {
-      const { user } = context;
-      if (!user) {
-        throw new AuthenticationError("You need to be logged in!");
-      }
-      return await User.findByIdAndUpdate(
-        user._id,
-        { $pull: { savedMeals: savedMeal } },
-        { new: true }
+    removeMeal: async (parent, { userId, savedMeal }) => {
+      return User.findOneAndUpdate(
+        { _id: userId },
+        {
+          $pull: { savedMeals: savedMeal },
+        },
+        {
+          new: true,
+        }
       );
     },
   },

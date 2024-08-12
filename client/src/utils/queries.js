@@ -26,9 +26,18 @@ export const QUERY_ME = gql`
 
 export const QUERY_MEALS = gql`
   query meals {
-    users {
-      savedMeals
+    meals {
+      _id
+      mealName
     }
   }
+`;
+
+export const GET_USER_MEALS = gql`
+query GetUserMeals($userId: ID!) {
+    user(id: $userId) {
+        meals
+    }
+}
 `;
 
