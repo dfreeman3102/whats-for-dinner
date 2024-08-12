@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import Auth from "../utils/auth";
-export default function Nav( { loggedIn } ) {
+import Auth from "../utils/auth.js";
+export default function Nav() {
 
   const logout = (event) => {
     event.preventDefault();
@@ -15,7 +15,7 @@ export default function Nav( { loggedIn } ) {
       <button>
         <Link to="/settings">Settings</Link>
       </button>
-      {loggedIn ? (
+      {Auth.loggedIn() ? (
       <button onClick={logout}>Logout</button>
       ) : (
       <>
