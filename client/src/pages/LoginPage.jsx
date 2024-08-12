@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { serializeFetchParameter, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 
 import Auth from "../utils/auth";
@@ -26,6 +26,7 @@ import Auth from "../utils/auth";
         Auth.login(data.login.token);
       } catch (e) {
         console.error(e);
+        console.log("Invalid Login Credentials");
       }
 
       setFormState({
