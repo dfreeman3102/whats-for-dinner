@@ -25,8 +25,8 @@ import Auth from "../utils/auth";
         });
         Auth.login(data.login.token);
       } catch (e) {
-        console.error(e);
         console.log("Invalid Login Credentials");
+        alert("Invalid Login Credentials");
       }
 
       setFormState({
