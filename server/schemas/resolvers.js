@@ -13,6 +13,9 @@ const resolvers = {
     users: async () => {
       return User.find({});
     },
+    user: async (parent, { id }) => {
+      return User.findById(id);
+    },
   },
   Mutation: {
     login: async (parent, { email, password }) => {
