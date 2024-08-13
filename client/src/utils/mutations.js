@@ -36,8 +36,8 @@ export const SAVE_MEAL = gql`
 `;
 
 export const REMOVE_MEAL = gql`
-    mutation removeMeal($userId: ID!, $savedMeals: [String!]!) {
-    removeMeal(userId: $userId, savedMeals: $savedMeals) {
+    mutation removeMeal($userId: ID!, $savedMeal: String!) {
+    removeMeal(userId: $userId, savedMeal: $savedMeal) {
             _id
             fullName
             email
