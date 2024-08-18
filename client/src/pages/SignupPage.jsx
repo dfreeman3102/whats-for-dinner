@@ -27,9 +27,12 @@ const Signup = (props) => {
             const {data} = await addUser({
                 variables: {...formState},
             });
+            console.log('User added:', data);
             Auth.login(data.addUser.token);
         } catch (e) {
-            console.error(e);
+            console.error('Error during signup:', JSON.stringify(e));
+            console.error('GraphQL error:', JSON.stringify(e.graphQLErrors, null, 2));
+            console.error('Network error:', e.networkError);
         }
 
         setFormState({
