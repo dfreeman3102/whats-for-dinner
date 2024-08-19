@@ -13,7 +13,14 @@ export default function CookPage() {
   }
 
   return (
-    <div>
+    <div
+    style={{
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+    }}
+    >
       <h2>Cook at Home</h2>
       <SavedMealsList />
       <NewSpinner />

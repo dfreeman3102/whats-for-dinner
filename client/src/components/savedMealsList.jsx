@@ -27,7 +27,7 @@ export default function SavedMealsList() {
   if (meals.length === 0) {
     return <div>No saved meals</div>;
   }
-  
+
   const handleRemoveMeal = async (meal) => {
     try {
       await removeMeal({
@@ -37,19 +37,40 @@ export default function SavedMealsList() {
       console.error("Error removing meal:", err);
     }
   };
+
+  const colors = [
+    "#f44336",
+    "#e91e63",
+    "#9c27b0",
+    "#673ab7",
+    "#3f51b5",
+    "#2196f3",
+    "#03a9f4",
+    "#00bcd4",
+    "#009688",
+    "#4caf50",
+  ];
+
   if (meals.length > 10) {
     return (
-    <div>
-      <div>Maximum of 10 meals exceeded, please remove an option.</div>
-      <ul>
-        {meals.map((meal, index) => (
-          <li key={index}>
-            {meal}
-            <button onClick={() => handleRemoveMeal(meal)}>Remove</button>
-          </li>
-        ))}
-      </ul>
-    </div>
+      <div>
+        <div>Maximum of 10 meals exceeded, please remove an option.</div>
+        <ul>
+          {meals.map((meal, index) => (
+            <li
+              key={index}
+              style={{
+                border: `2px solid ${colors[index % colors.length]}`,
+                padding: "5px",
+                margin: "5px",
+              }}
+            >
+              {meal}
+              <button onClick={() => handleRemoveMeal(meal)}>Remove</button>
+            </li>
+          ))}
+        </ul>
+      </div>
     );
   }
 
@@ -57,7 +78,16 @@ export default function SavedMealsList() {
     <div>
       <ul>
         {meals.map((meal, index) => (
-          <li key={index}>
+          <li
+            key={index}
+            style={{
+              border: `2px solid ${colors[index % colors.length]}`,
+              padding: "5px",
+              margin: "5px",
+              listStyle: "none",
+              display: "inline-grid"
+            }}
+          >
             {meal}
             <button onClick={() => handleRemoveMeal(meal)}>Remove</button>
           </li>
