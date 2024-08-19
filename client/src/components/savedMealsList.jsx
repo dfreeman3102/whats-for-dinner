@@ -27,7 +27,7 @@ export default function SavedMealsList() {
   if (meals.length === 0) {
     return <div>No saved meals</div>;
   }
-
+  
   const handleRemoveMeal = async (meal) => {
     try {
       await removeMeal({
@@ -37,6 +37,21 @@ export default function SavedMealsList() {
       console.error("Error removing meal:", err);
     }
   };
+  if (meals.length > 10) {
+    return (
+    <div>
+      <div>Maximum of 10 meals exceeded, please remove an option.</div>
+      <ul>
+        {meals.map((meal, index) => (
+          <li key={index}>
+            {meal}
+            <button onClick={() => handleRemoveMeal(meal)}>Remove</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+    );
+  }
 
   return (
     <div>

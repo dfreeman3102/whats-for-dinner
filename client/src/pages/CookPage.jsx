@@ -1,6 +1,5 @@
-import Spinner from "../components/Spinner";
 import SavedMealsList from "../components/savedMealsList";
-
+import NewSpinner from "../components/NewSpinner";
 import Auth from "../utils/auth";
 
 export default function CookPage() {
@@ -17,7 +16,7 @@ export default function CookPage() {
     <div>
       <h2>Cook at Home</h2>
       <SavedMealsList />
-      <Spinner />
+      <NewSpinner />
     </div>
   );
 }
