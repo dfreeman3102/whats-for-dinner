@@ -38,17 +38,6 @@ export default function SavedMealsList() {
     }
   };
 
-  const colors = [
-    "#f44336",
-    "#e91e63",
-    "#9c27b0",
-    "#673ab7",
-    "#3f51b5",
-    "#2196f3",
-    "#03a9f4",
-    "#00bcd4"
-  ];
-
   if (meals.length > 8) {
     return (
       <div>
@@ -63,6 +52,7 @@ export default function SavedMealsList() {
                 listStyle: "none",
                 display: "inline-grid",
                 border: `2px solid white`,
+                borderRadius: "5px",
               }}
             >
               {meal}
@@ -86,6 +76,7 @@ export default function SavedMealsList() {
               listStyle: "none",
               display: "inline-grid",
               border: `2px solid white`,
+              borderRadius: "5px",
             }}
           >
             {meal}
