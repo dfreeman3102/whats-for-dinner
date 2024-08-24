@@ -84,8 +84,7 @@ body{
 .container .wheel .number span{
   position: relative;
   transform: rotate(-45deg);
-  font-size: 2em;
-  font-weight: 500;
-  color: #fff;
-  text-shadow: 0 0 5px rgba(0,0,0,0.75);
+  font-size: 1em;
+  font-weight: 600;
+  color: #333;
 }
