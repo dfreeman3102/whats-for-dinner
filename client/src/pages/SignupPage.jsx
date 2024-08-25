@@ -43,7 +43,7 @@ const Signup = (props) => {
     };
 
     return (
-        <div>
+        <div className='signup'>
             <form onSubmit={handleFormSubmit}>
                 <input
                     className="form-input"
@@ -70,7 +70,7 @@ const Signup = (props) => {
                     onChange={handleChange}
                 />
                 <button
-                    className="btn btn-block btn-info"
+                    className="submit-btn"
                     style={{cursor: 'pointer'}}
                     type="submit"
                 >

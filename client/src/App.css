@@ -4,3 +4,34 @@
   padding: 2rem;
   text-align: center;
 }
+
+input{
+  padding: 0.5rem;
+  margin: 0.5rem;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 5px;
+  color: black;
+}
+
+form {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.signup {
+  width: 50%;
+  margin: 0 auto;
+}
+
+ul {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+li {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+}

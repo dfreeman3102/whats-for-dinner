@@ -55,7 +55,7 @@ import Auth from "../utils/auth";
                   onChange={handleChange}
                 />
                 <button
-                  className="btn btn-block btn-info"
+                  className="submit-btn"
                   style={{ cursor: 'pointer' }}
                   type="submit"
                 >
