@@ -1,7 +1,7 @@
 import "./spinner.css";
 import { useState, useRef } from "react";
 
-export default function Spinner() {
+export default function RestaurantSpinner() {
   const [value, setValue] = useState(Math.ceil(Math.random() * 3600));
   const wheelRef = useRef(null);
 

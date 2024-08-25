@@ -4,7 +4,7 @@ import Auth from "../utils/auth";
 import { GET_USER_MEALS } from "../utils/queries";
 import "./spinner.css";
 
-export default function Spinner() {
+export default function CookSpinner() {
   const { loading, error, data } = useQuery(GET_USER_MEALS, {
     variables: { userId: Auth.getUser().data._id },
   });
