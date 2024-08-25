@@ -46,14 +46,6 @@ export default function SavedMealsList() {
           {meals.map((meal, index) => (
             <li
               key={index}
-              style={{
-                padding: "5px",
-                margin: "5px",
-                listStyle: "none",
-                display: "inline-grid",
-                border: `2px solid white`,
-                borderRadius: "5px",
-              }}
             >
               {meal}
               <button onClick={() => handleRemoveMeal(meal)}>Remove</button>
@@ -70,14 +62,6 @@ export default function SavedMealsList() {
         {meals.map((meal, index) => (
           <li
             key={index}
-            style={{
-              padding: "5px",
-              margin: "5px",
-              listStyle: "none",
-              display: "inline-grid",
-              border: `2px solid white`,
-              borderRadius: "5px",
-            }}
           >
             {meal}
             <button onClick={() => handleRemoveMeal(meal)}>Remove</button>

@@ -31,7 +31,26 @@ ul {
 }
 
 li {
+  list-style: none;
+  margin: 1rem;
+  padding: 1rem;
+  border: 1px solid #f0f0f0;
+  border-radius: 5px;
   width: 20%;
-  display: flex;
-  justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+  ul {
+    flex-direction: column;
+  }
+
+  li {
+    width: 85%;
+    font-size: small;
+  }
+
+  button{
+    font-size: smaller;
+  }
+  
 }
